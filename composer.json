@@ -1,0 +1,26 @@
+{
+    "name": "rosgear/rg-wd-tinymce",
+    "description": "Widget \"TinyMCE\" for the RosGear web application",
+    "keywords": ["rosgear", "cms", "gepanel", "widget"],
+    "homepage": "https://rosgear.ru/component/rg-wd-tinymce/",
+    "type": "component",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Tivonenko",
+            "email": "anton.tivonenko@gmail.com",
+            "homepage": "https://rosgear.ru/"
+        }
+    ],
+    "require": {
+        "rosgear/ge2-composer-plugin": "*"
+    },
+    "extra": {
+        "ge": {
+            "id": "rg.wd.tinymce",
+            "vendor": "ge"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
