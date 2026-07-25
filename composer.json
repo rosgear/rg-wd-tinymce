@@ -18,7 +18,7 @@
     "extra": {
         "ge": {
             "id": "rg.wd.tinymce",
-            "vendor": "ge"
+            "vendor": "rg"
         }
     },
     "minimum-stability": "dev",
