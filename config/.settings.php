@@ -18,7 +18,7 @@ return [
     // расширенная проверка элементов
     'extended_valid_elements' => 'img[class|style|src|border|alt|title|hspace|vspace|width|height|align|loading|longdesc|onmouseover|onmouseout|name],i[*],div[*],span[*]',
     // подключаемые плагины
-    'plugins' => 'advlist,autolink,lists,link,image,preview,hr,anchor,pagebreak,code,media,nonbreaking,save,table,contextmenu,directionality,textcolor,searchreplace,wordcount,visualblocks,visualchars,paste,fullscreen,paste,link,contextmenu,gmshortcode,gmimage,gmlink',
+    'plugins' => 'advlist,autolink,lists,link,image,preview,hr,anchor,pagebreak,code,media,nonbreaking,save,table,contextmenu,directionality,textcolor,searchreplace,wordcount,visualblocks,visualchars,paste,fullscreen,paste,link,contextmenu,gshortcode,gimage,glink',
     // панель инструментов 
     'toolbar' => '',
     // панель инструментов (1-я строка)
