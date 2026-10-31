@@ -12,8 +12,8 @@
 return [
     'name'        => 'TinyMCE',
     'description' => 'WYSIWYG editor',
-    'version'     => '1.0',
-    'versionDate' => '20-12-2017',
+    'version'     => '1.0.1',
+    'versionDate' => '27-10-2026',
     'author'      => 'RosGear',
     'authorUrl'   => 'https://rosgear.ru/',
     'email'       => 'info@rosgear.ru',
