@@ -3,3 +3,6 @@
 /.gitattributes export-ignore
 /.gitignore     export-ignore
 /.editorconfig  export-ignore
+
+# Установить поведение по умолчанию на случай, если у пользователей не задан параметр core.autocrlf
+* text=auto
