@@ -15,14 +15,63 @@
     <p>The сustomizing уditor form can be called from <a href="<?= $url('index', 'extension:rg.be.config.desk') ?>">Configuration panel</a> or from <a href="<?= $url('index', 'extension:rg.be.mp.wmanager') ?>">Widgets manager</a>.</p>
     <h2>Form fields</h2>
     <ul class="g-help-list">
-        <li><b>Connected plugins.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Toolbar.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Toolbar (1 row).</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Toolbar (2 row).</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Tool size.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Show main menu.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Show status bar.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Show toolbar.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Default tools.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><b>Connected plugins.</b><br>
+        This field specifies explicitly allowed additional HTML tags and attributes that are prohibited by default in the editor configuration.<br>
+        TinyMCE by default allows only a "safe" set of tags and attributes. Anything outside this list is removed by the editor during saving.<br>
+        This field expands that list: you can add your own tags, specify which attributes are allowed for them, and even set nesting rules.<br>
+        Examples:<br>
+        <ul>
+            <li>img[src|alt|width|height] — allows <img> with the attributes src, alt, width, height.</li>
+            <li>span[class|style] — allows &lt;span&gt; with class and style.</li>
+            <li>div[class] — allows &lt;div&gt; with class.</li>
+        </ul>
+        You can specify several tags in a row: <code>img[src|alt], span[class], div[class]</code>.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Toolbar.</b><br>
+        The field defines the set and order of buttons on the editor’s toolbar — this is how it determines which functions will be available to the user.<br>
+        It can be a string (for a single line of buttons) or an array of strings (if several lines are needed), and vertical bars | serve as group separators, visually delineating logical blocks.<br>
+        It is important that the button will appear only if its plugin is enabled in the plugins settings, and for some functions (for example, inserting images or tables) to work correctly, you should additionally agree on the allowed tags via extended_valid_elements.<br>
+        To ensure adaptability on different screens, you can use toolbar_mode: 'wrap' — in this case, the buttons will automatically wrap to the next line if they do not fit within the container width.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Toolbar (1 row).</b><br>
+        The field defines the buttons that will appear in the top row of the editor interface — this immediately gives the user quick access to the most commonly used functions.<br>
+        Its value is specified as part of the overall toolbar configuration: if you use an array of strings, the first string in the array will become this first panel — for example, toolbar: <code>['bold italic | link', 'image table']</code> will make bold italic | link the first line.<br>
+        The vertical bar | here functions as a visual separator: it groups buttons by meaning and adds a small margin between groups to make the panel look structured.<br>
+        Typically, the first line includes basic text actions (bold, italic, link) — this way, the user finds frequently used tools more quickly, and the interface remains clear even on screens of medium width.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Toolbar (2 row).</b><br>
+        The field defines the buttons that will appear in the second row of the editor interface.
+        </li>
+    </ul>
+
+    <h3>Увеличение изображения при нажатии</h3>
+    <ul class="g-help-list">
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Magnification attribute.</b><br>
+        The field specifies the name of the attribute that will be added to the &lt;img&gt; tag — it serves as a marker for the plugin and signals that a magnification function should be available for this image (for example, opening in a lightbox or viewing at full size).
+        </li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Full image address attribute.</b><br>
+        The field specifies the name of the attribute that will be added to the &lt;img&gt; tag — it serves as a marker for the plugin and indicates that there is an original size for this image.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Full image file retrieval template.</b><br>
+        The field contains a template in the form of a list of words (separated by commas) that need to be removed from the original image URL — this allows you to automatically obtain a link to the full-size version of the image.<br>
+        Here’s how it works: the system sequentially cuts out the specified fragments from the URL string, "cleaning" it of service tags, suffixes, or parameters responsible for the preview, resizing, or format (for example, _medium, _thumb). As a result, the address of the full image remains.
+        </li>
+    </ul>
+
+    <ul class="g-help-list">
+<li><span class="g-help-fld g-help-fld_combo"></span> <b>Tool size.</b><br>
+        Sets the scale of the buttons for the editor's toolbar: small, medium, large.
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Show main menu.</b><br>
+        When the flag is set, the top menu bar in the editor will be displayed.</li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Show status bar.</b><br>
+        The flag controls whether the status bar will be visible at the bottom of the editor — it provides the user with useful reference information right during work.<br>
+        Most often, the status bar is left in editors for authors and content managers — both the path through the elements and the word counter are useful there. And in simple forms (comments, requests, chats), it is often disabled so that the interface is as concise as possible and nothing distracts from writing text.
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Show toolbar.</b><br>
+        The flag controls whether the editor will display a line with formatting buttons — bold, italic, lists, inserting an image, etc.<br>
+        Most often, the panel is left in place — it provides quick access to the main functions. It is completely removed in very narrow scenarios: for example, in “read‑only” mode with minimal editing capabilities, or when formatting controls are moved outside the editor (separate buttons on the page).
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Default tools.</b><br>
+        When the flag is set, it defines the set of default buttons on the editor panel.</li>
     </ul>
 </article>

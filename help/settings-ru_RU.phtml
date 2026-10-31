@@ -18,14 +18,63 @@
     <p>Форму настроек редактора можно вызвать из <a href="<?= $url('index', 'extension:rg.be.config.desk') ?>">Панели конфигурации</a> или из <a href="<?= $url('index', 'extension:rg.be.mp.wmanager') ?>">Менеджера виджетов</a>.</p>
     <h2>Поля формы</h2>
     <ul class="g-help-list">
-        <li><b>Подключаемые плагины.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Панель инструментов.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Панель инструментов (1-я строка).</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Панель инструментов (2-я строка).</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Размер инструментов.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Показывать главное меню.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Показывать строку статуса.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Показывать панель инструментов.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Инструменты по умолчанию.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Подключаемые плагины.</b><br>
+        В этом поле указываются явно разрешенные дополнительные HTML-теги и атрибуты, которые по умолчанию запрещены конфигурацией редактора.<br>
+        TinyMCE по умолчанию разрешает только «безопасный» набор тегов и атрибутов. Всё, что выходит за рамки этого списка, редактор вырезает при сохранении.<br>
+        Поле расширяет этот список: вы можете добавить туда свои теги, указать, какие атрибуты у них допустимы, и даже задать правила вложенности.<br>
+        Примеры:<br>
+        <ul>
+            <li>img[src|alt|width|height] — разрешает <img> с атрибутами src, alt, width, height.</li>
+            <li>span[class|style] — разрешает &lt;span&gt; с class и style.</li>
+            <li>div[class] — разрешает &lt;div&gt; с class.</li>
+        </ul>
+        Можно указывать несколько тегов подряд: <code>img[src|alt], span[class], div[class]</code>.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Панель инструментов.</b><br>
+        Поле задаёт набор и порядок кнопок на панели инструментов редактора — именно так определяют, какие функции будут доступны пользователю.<br>
+        Оно может быть строкой (для одной строки кнопок) или массивом строк (если нужно несколько строк), а вертикальные черты | служат разделителями групп, визуально отделяя логические блоки.<br>
+        Важно, что кнопка появится только при условии, что её плагин подключён в настройке plugins, а для корректной работы некоторых функций (например, вставки картинок или таблиц) дополнительно стоит согласовать разрешённые теги через extended_valid_elements.<br>
+        Для адаптивности на разных экранах можно использовать toolbar_mode: 'wrap' — тогда кнопки будут автоматически переноситься на следующую строку, если не помещаются в ширину контейнера.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Панель инструментов (1-я строка).</b><br>
+        Поле задаёт кнопки, которые появятся в верхнем ряду интерфейса редактора — это сразу даёт пользователю быстрый доступ к самым востребованным функциям.<br>
+        Его значение указывают как часть общей настройки toolbar: если используешь массив строк, первая строка массива и станет этой первой панелью — например, toolbar: <code>['bold italic | link', 'image table']</code> сделает bold italic | link первой строкой.<br>
+        Вертикальная черта | здесь работает как визуальный разделитель: она группирует кнопки по смыслу и добавляет между группами небольшой отступ, чтобы панель выглядела структурированно.<br>
+        Обычно в первую строку выносят базовые действия над текстом (жирный, курсив, ссылка) — так пользователь быстрее находит часто используемые инструменты, а интерфейс остаётся понятным даже на экранах средней ширины.
+        </li>
+        <li><span class="g-help-fld g-help-fld_textarea"></span> <b>Панель инструментов (2-я строка).</b><br>
+        Поле задаёт кнопки, которые появятся во 2-м ряду интерфейса редактора.
+        </li>
+    </ul>
+
+    <h3>Увеличение изображения при нажатии</h3>
+    <ul class="g-help-list">
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Атрибут признака увеличения.</b><br>
+        В поле указывается имя атрибута, который будет добавлен к тегу &lt;img&gt; — он служит маркером для плагина и сигнализирует, что для этого изображения должна быть доступна функция увеличения (например, открытие в лайтбоксе или просмотр в полном размере).
+        </li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Атрибут адреса полного изображения.</b><br>
+        В поле указывается имя атрибута, который будет добавлен к тегу &lt;img&gt; — он служит маркером для плагина и сигнализирует, что для этого изображения есть оригинальный размер.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Шаблон получения файла полного изображения.</b><br>
+        В поле задаётся шаблон в виде списка слов (через запятую), которые нужно удалить из исходного URL-адреса изображения — это позволяет автоматически получить ссылку на полноразмерную версию картинки.<br>
+        Работает это так: система последовательно вырезает указанные фрагменты из строки URL, «очищая» её от служебных меток, суффиксов или параметров, отвечающих за превью, ресайз или формат (например, _medium, _thumb). В результате остаётся адрес полного изображения.
+        </li>
+    </ul>
+
+    <ul class="g-help-list">
+        <li><span class="g-help-fld g-help-fld_combo"></span> <b>Размер инструментов.</b><br>
+        Устанавливает масштаб кнопок для панели инструментов редактора: малый, средний, большой.
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Показывать главное меню.</b><br>
+        При установленном флаге будет отображаться верхняя строка меню в редакторе.</li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Показывать строку статуса.</b><br>
+        Флаг управляет тем, будет ли внизу редактора видна статусная панель — она даёт пользователю полезную справочную информацию прямо во время работы.<br>
+        Чаще всего статусную панель оставляют в редакторах для авторов и контент‑менеджеров — там полезны и путь по элементам, и счётчик слов. А в простых формах (комментарии, заявки, чаты) её нередко отключают, чтобы интерфейс был максимально лаконичным и ничего не отвлекало от написания текста.
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Показывать панель инструментов.</b><br>
+        Флаг управляет тем, будет ли в редакторе видна строка с кнопками форматирования — жирный, курсив, списки, вставка картинки и т.д.<br>
+        Чаще всего панель оставляют — она даёт быстрый доступ к основным функциям. Полностью убирают её в очень узких сценариях: например, в режиме «только чтение» с возможностью минимального редактирования или когда управление форматированием выносят за пределы редактора (отдельные кнопки на странице).
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Инструменты по умолчанию.</b><br>
+        При установленном флаге определяет набор кнопок по умолчанию на панели редактора.</li>
     </ul>
 </article>
